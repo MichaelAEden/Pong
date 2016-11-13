@@ -21,7 +21,6 @@ HARD = 14
 
 DIFFICUlTY = EASY
 
-WHITE = 255,255,255
 GREEN = 50,255,50
 BLACK = 0,0,0
 
@@ -77,7 +76,7 @@ class Input:
 class Window:
     #Creates a window given a title, width, and height
     def __init__(self, title, width, height):
-        self.screen = pygame.display.set_mode(width, height)
+        self.screen = pygame.display.set_mode((width, height))
         pygame.display.set_caption(title)
         pygame.init()
         surface = pygame.Surface((width, height))
@@ -99,7 +98,7 @@ class Window:
     #Displays text in the window, centred at given coordinates
     def displayText(self, screen, text, x, y):
         font = pygame.font.Font(None, 35)
-        fontImage = font.render(text, 1, WHITE)
+        fontImage = font.render(text, 1, GREEN)
         screen.blit(fontImage, (x - fontImage.get_rect().width / 2, y - fontImage.get_rect().height / 2))
  
     def getInput(self):
@@ -354,7 +353,7 @@ class Table:
         
     #Draws dotted line at given x-position which marks some boundary (i.e., goal line or centre line)
     def drawBoundaryLine(self, window, position):
-        segments = 20
+        segments = 10
         for y in range (0, segments, 2):
             pygame.draw.line(window.getScreen(), GREEN, (position, y * window.getHeight() / segments), (position, (y + 1) * window.getHeight() / segments), 5)
 
